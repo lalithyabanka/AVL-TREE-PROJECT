@@ -1,0 +1,41 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #d0728e;
+  margin: 2;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+.controls {
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 6px;
+  width: 80px;
+}
+
+button {
+  padding: 6px 12px;
+  margin-left: 5px;
+  cursor: pointer;
+
+  background-color: #7ed66c;   /* button color */
+  color: rgb(4, 3, 3);                /* text color */
+  border: none;
+  border-radius: 6px;
+  font-size: 18px;
+}
+
+canvas {
+  background: #fefefe;
+  border: 5px solid #000000;
+}
+button:hover {
+  background-color: #f1f1f1;
+}
+
