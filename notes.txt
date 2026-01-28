@@ -1,0 +1,184 @@
+1) Time complexity of major operations in BST and need of balanced BSTs**
+
+🔹 Operations in a BST
+
+ **Search**
+ **Insertion**
+ **Deletion**
+
+🔹 Time Complexity
+
+| Case                 | Height of BST | Time Complexity |
+| -------------------- | ------------- | --------------- |
+| Best case (balanced) | `log n`       | **O(log n)**    |
+| Average case         | ~`log n`      | **O(log n)**    |
+| Worst case (skewed)  | `n`           | **O(n)**        |
+
+👉 Worst case happens when elements are inserted in **sorted order**, turning BST into a **linked list**.
+
+### 🔹 Need for Balanced BSTs
+
+* Prevent degeneration into a skewed tree
+* Guarantee **O(log n)** time for operations
+* Improve performance consistency
+* Essential for large datasets
+
+✔ Balanced BSTs (AVL, Red-Black) **automatically maintain height**
+
+---
+
+## **2) How does an AVL tree detect imbalance?**
+
+AVL tree stores **height** at each node.
+
+### 🔹 Balance Factor
+
+[
+\text{Balance Factor} = \text{height(left subtree)} - \text{height(right subtree)}
+]
+
+### 🔹 Valid balance factor values
+
+```
+-1, 0, +1 → Balanced
+```
+
+### 🔹 Imbalance condition
+
+```
+Balance factor < -1 or > +1 → Imbalanced
+```
+
+AVL checks balance factor:
+
+* After **every insertion**
+* After **every deletion**
+* While moving back up the recursion
+
+---
+
+## **3) The 4 imbalanced cases in AVL tree and how to fix them**
+
+### 🔹 1️⃣ Left-Left (LL) Case
+
+**Cause:**
+
+* Insertion in left subtree of left child
+
+**Fix:**
+
+* **Single Right Rotation**
+
+```
+      z              y
+     /              / \
+    y      →       x   z
+   /
+  x
+```
+
+---
+
+### 🔹 2️⃣ Right-Right (RR) Case
+
+**Cause:**
+
+* Insertion in right subtree of right child
+
+**Fix:**
+
+* **Single Left Rotation**
+
+```
+  z                 y
+   \               / \
+    y      →      z   x
+     \
+      x
+```
+
+---
+
+### 🔹 3️⃣ Left-Right (LR) Case
+
+**Cause:**
+
+* Insertion in right subtree of left child
+
+**Fix:**
+
+* **Left rotation on left child**
+* **Right rotation on root**
+
+---
+
+### 🔹 4️⃣ Right-Left (RL) Case
+
+**Cause:**
+
+* Insertion in left subtree of right child
+
+**Fix:**
+
+* **Right rotation on right child**
+* **Left rotation on root**
+
+---
+
+## **4) Comparison between AVL Tree and Red-Black Tree**
+
+| Feature           | AVL Tree                | Red-Black Tree           |
+| ----------------- | ----------------------- | ------------------------ |
+| Balancing         | Strict                  | Less strict              |
+| Height            | Shorter                 | Slightly taller          |
+| Search            | Faster                  | Slightly slower          |
+| Insert/Delete     | Slower (more rotations) | Faster (fewer rotations) |
+| Balance info      | Height stored           | Color stored             |
+| Implementation    | Complex                 | Simpler                  |
+| Worst-case height | `~1.44 log n`           | `~2 log n`               |
+
+### 🔹 When to use which?
+
+* **AVL Tree** → Search-heavy applications
+* **Red-Black Tree** → Insert/Delete-heavy applications
+
+---
+
+## **5) Why Java uses Red-Black Tree instead of AVL Tree in TreeMap**
+
+### 🔹 Java’s `TreeMap` uses Red-Black Tree because:
+
+1. **Faster insertions and deletions**
+
+   * AVL requires frequent rotations
+   * Red-Black uses fewer rotations
+
+2. **Better performance consistency**
+
+   * Java collections are used in dynamic environments
+
+3. **Simpler rebalancing**
+
+   * Color flips instead of height recalculations
+
+4. **Acceptable search performance**
+
+   * Slightly slower than AVL, but still **O(log n)**
+
+5. **Lower maintenance overhead**
+
+   * Red-Black Trees are easier to maintain and debug
+
+### 🔹 Java design philosophy:
+
+> *Prefer predictable, balanced performance over aggressive optimization.*
+
+---
+
+## ✅ Summary
+
+* BST can degrade to **O(n)** → need balanced trees
+* AVL detects imbalance using **balance factor**
+* 4 AVL cases: **LL, RR, LR, RL**
+* AVL → faster search, Red-Black → faster updates
+* Java uses Red-Black Trees for **better overall performance**
