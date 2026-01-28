@@ -1,2 +1,2 @@
 # AVL-TREE-PROJECT
-using bst logic
+using Binary Search Tree logic
